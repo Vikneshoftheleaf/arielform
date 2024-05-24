@@ -1,5 +1,6 @@
 "use client"
 import { useRouter } from "next/navigation";
+import GoogleSigninBtn from "./google-signup-btn";
 
 import Link from "next/link";
 export default function Navbar() {
@@ -18,7 +19,7 @@ export default function Navbar() {
                     <Link href={'dashboard'}>Dashboard</Link>
                     <Link href={'login'}>Login</Link>
                     <Link className="bg-emerald-600 text-slate-50 px-4 py-2 rounded-full" href={'signup'}>Signup</Link>
-
+                    <GoogleSigninBtn></GoogleSigninBtn>
                 </div>
             </nav>
 
