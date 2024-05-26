@@ -22,7 +22,12 @@ const handler = NextAuth({
           clientId: process.env.NEXTAUTH_GOOGLE_CLIENT_ID as string,
           clientSecret: process.env.NEXTAUTH_GOOGLE_CLIENT_SECRET as string,
         })
-  ]
+  ],
+  pages:
+  {
+    signIn: '/signup',
+
+  }
 })
 
 
