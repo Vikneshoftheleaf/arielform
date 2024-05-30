@@ -86,10 +86,7 @@ export default function LoginForm() {
 
     }
 
-    if (user) {
-        router.push('dashboard')
-    }
-    else
+
 
         return (
             <section class="bg-gray-50 dark:bg-gray-900">

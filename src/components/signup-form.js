@@ -122,10 +122,7 @@ const SignupForm = () => {
 
     }
 
-    if (user) {
-        router.push('dashboard')
-    }
-    else
+  
         return (
             <div>
                 <section class="bg-gray-50 dark:bg-gray-900">

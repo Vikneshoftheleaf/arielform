@@ -5,14 +5,18 @@ import PopupModal from './popup-modal'
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebase';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 export default function DashboardScreen() {
     const router = useRouter();
     const { user } = useAuthContext();
     //Location error fixed
-    if (!user) {
-        router.push('login')
-    }
-    else
+    
+    useEffect(()=>{
+        if (!user) {
+            router.push('login')
+        }
+
+    },[user])
     return (
         <main>
             <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
