@@ -1,11 +1,11 @@
 "use client"
 import Link from "next/link";
-import { useAuthContext } from "../../context/auth-context"
+import { useAuthContext } from "../context/auth-context"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { auth, db } from "../firebase";
+import {auth, db} from "@/firebase"
 import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const SignupForm = () => {
     const provider = new GoogleAuthProvider();
@@ -39,7 +39,6 @@ const SignupForm = () => {
                 const displayName = user.email.split('@')
                 setDoc(doc(db, "user", user.uid), {
                     uid: user.uid,
-                    userName: null,
                     displayName: user.displayName ? user.displayName : displayName[0],
                     email: user.email,
                     photoURL: user.photoURL ? user.photoURL : null,
@@ -61,22 +60,33 @@ const SignupForm = () => {
 
     function googleSignup() {
         signInWithPopup(auth, provider)
-            .then((result) => {
+            .then(async (result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
-                const [displayName] = user.email.split('@')
-                setDoc(doc(db, "user", user.uid), {
-                    uid: user.uid,
-                    userName: null,
-                    displayName: user.displayName ? user.displayName : displayName[0],
-                    email: user.email,
-                    photoURL: user.photoURL ? user.photoURL : null,
-                    verified: false,
+                
+                console.log(user.uid)
 
-                }).then(() => sendCode('welcome', null, user.email, user.displayName));
+                const docRef = doc(db, "user", user.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    console.log("Document data:", docSnap.data());
+                } else {
+                    // docSnap.data() will be undefined in this case
+                    const displayName = user.email.split('@')
+                    setDoc(doc(db, "user", user.uid), {
+                        uid: user.uid,
+                        displayName: user.displayName ? user.displayName : displayName[0],
+                        email: user.email,
+                        photoURL: user.photoURL ? user.photoURL : null,
+                        verified: false,
+                    })
+
+                    console.log("account created on force")
+                }
                 // IdP data available using getAdditionalUserInfo(result)
                 console.log("signned up with google!")
 

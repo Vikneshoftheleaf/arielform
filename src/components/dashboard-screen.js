@@ -1,13 +1,19 @@
-import PopupModal from '../components/popup-modal'
-import { useAuthContext } from '../../context/auth-context'
+"use client"
 
-export default  function DashboardScreen() {
-
-    const {user}  = useAuthContext();
-
+import { useAuthContext } from '@/context/auth-context'
+import PopupModal from './popup-modal'
+import { signOut } from 'firebase/auth';
+import { auth } from '@/firebase';
+import { useRouter } from 'next/navigation';
+export default function DashboardScreen() {
+    const router = useRouter();
+    const { user } = useAuthContext();
+    if (!user) {
+        router.push('login')
+    }
+    else
     return (
         <main>
-            <h1>{user.uid}</h1>
             <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                 <div class="px-3 py-3 lg:px-5 lg:pl-3">
                     <div class="flex items-center justify-between">
@@ -77,6 +83,9 @@ export default  function DashboardScreen() {
                                 <span class="ms-3">Submissions</span>
                             </a>
                         </li>
+                        <h1>{(user == null) ? null : user.email}</h1>
+                        <button onClick={()=>signOut(auth)}>Signout</button>
+
 
                     </ul>
                 </div>
