@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useAuthContext } from "../context/auth-context"
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {auth, db} from "@/firebase"
 import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -122,10 +122,7 @@ const SignupForm = () => {
 
     }
 
-    if (user) {
-        router.push('dashboard')
-    }
-    else
+
         return (
             <div>
                 <section class="bg-gray-50 dark:bg-gray-900">

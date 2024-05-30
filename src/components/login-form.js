@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { auth, db } from "@/firebase"
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/context/auth-context";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
@@ -85,11 +85,6 @@ export default function LoginForm() {
             });
 
     }
-
-    if (user) {
-        router.push('dashboard')
-    }
-    else
 
         return (
             <section class="bg-gray-50 dark:bg-gray-900">
