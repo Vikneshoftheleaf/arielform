@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 export default function DashboardScreen() {
     const router = useRouter();
     const { user } = useAuthContext();
+    //Location error fixed
     if (!user) {
         router.push('login')
     }
