@@ -1,7 +1,7 @@
 "use client"
 
 import { useAuthContext } from '@/context/auth-context'
-import PopupModal from './popup-modal'
+import PopupModal from '@/components/popup-modal';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebase';
 import { useRouter } from 'next/navigation';
