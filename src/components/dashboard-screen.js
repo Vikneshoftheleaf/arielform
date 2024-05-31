@@ -57,7 +57,7 @@ export default function DashboardScreen() {
                         <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <Avatar className="border-2 ">
-                                    <AvatarImage src={user.photoURL} className="rounded-[100%]" />
+                                    <AvatarImage src={(user.photoURL !=null)?user.photoURL:null} className="rounded-[100%]" />
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
 
@@ -67,7 +67,7 @@ export default function DashboardScreen() {
                                     <h1 className='flex gap-2'><span><User /></span>{(user == null) ? null : user.email}</h1>
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem className='flex gap-2'><span><LogOut /></span><button onClick={() => signOut(auth)} >Signout</button></DropdownMenuItem>
+                                <DropdownMenuItem className='flex gap-2'><span><LogOut /></span><button onClick={() => {setloading(true);signOut(auth)}} >Signout</button></DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
 
