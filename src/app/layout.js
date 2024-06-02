@@ -5,7 +5,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 import Navbar from "../components/nav";
 
-import { AuthContextProvider } from "@/context/auth-context";
+import { AuthContextProvider } from "../context/auth-context";
+
 
 export default function RootLayout({ children }) {
   return (
