@@ -19,24 +19,14 @@ export const AuthContextProvider = ({
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
-                router.push('dashboard')
 
             } else {
 
                 setUser(null);
-                router.push('/')
             }
         });
         return () => unsubscribe();
-    }, [auth]);
-
-   /* useEffect(()=>{
-        if(user != null)
-        {
-          router.push('/')
-        }
-      },[user])*/
-
+    }, []);
 
 
    

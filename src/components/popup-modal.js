@@ -40,9 +40,9 @@ const PopupModal = ({ userinfo }) => {
     return (
         <>
 
-            <AlertDialog>
-                <AlertDialogTrigger>
-                    <button className="flex gap-2 "><PlusIcon className="text-emerald-600" size={24}/> New</button>
+            <AlertDialog className="w-full">
+                <AlertDialogTrigger className="w-full">
+                    <button className="w-full flex gap-2 p-0 m-0"><PlusIcon className="text-emerald-600 bg-emerald-100 rounded-[8px]" size={24} /> New</button>
                 </AlertDialogTrigger>
                 <AlertDialogContent className="bg-white rounded-[8px]">
                     <AlertDialogHeader>
